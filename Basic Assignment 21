@@ -1,0 +1,86 @@
+# 1. Add the current date to the text file today.txt as a string.
+import datetime
+import os
+prntdt = datetime.date.today()
+prsnt = str(prntdt)
+tdy = open("today.txt",'w')
+wtdy = tdy.write(prsnt)
+tdy.close()
+
+# 2. Read the text file today.txt into the string today_string
+tdy = open("today.txt", 'r')
+today_string = tdy.read()
+print(today_string)
+
+# 3. Parse the date from today_string.
+from datetime import datetime
+date_time_str = today_string
+date_time_obj = datetime.strptime(date_time_str,"%Y-%m-%d")
+print("The type of date is", type(date_time_obj))
+
+# 4. List the files in your current directory
+
+import os
+lst_dir = os.listdir()
+print("List of files in current working directory are:" ,lst_dir)
+os.getcwd()
+"""
+5. Create a list of all of the files in your parent directory 
+(minimum five files should be available).
+"""
+os.chdir('D:\\')
+prnt_lst_dir = os.listdir()
+print("List of files in parent working directory are:" ,prnt_lst_dir)
+
+"""
+6. Use multiprocessing to create three separate processes. 
+Make each one wait a random number of seconds between one and five, 
+print the current time, and then exit.
+
+"""
+import time
+import datetime
+
+def print_cube(num):
+    time.sleep(2)    
+    t1 = datetime.datetime.now()
+    print("Cube: {}".format(num*num*num))
+    print("Current date & time is:",t1)
+    
+def print_square(num):
+    time.sleep(3)    
+    t2 = datetime.datetime.now()
+    print("Square: {}".format(num*num))
+    print("Current date & time is:",t2)
+    
+def print_multiple(num1, num2):
+    time.sleep(4)    
+    t3 = datetime.datetime.now()
+    print("Multiplication: {}".format(num1*num2))
+    print("Current date & time is:",t3)
+
+    
+print_cube(2)
+print_square(3)
+print_multiple(5,7) 
+
+# 7. Create a date object of your day of birth.
+import datetime
+weekdays = ["Monday", "Tuesday", "Wednesday", 
+           "Thursday", "Friday", "Saturday", "Sunday"]
+date_obj = input("Enter the date of birth in DD/MM/YYYY format:")
+
+# 8. What day of the week was your day of birth?
+def get_birthday(date_obj):
+    day, month, year = date_obj.split("/")
+    bdate = datetime.datetime(int(year), int(month), int(day))
+    weekday = bdate.weekday()
+    day = print("Day of the week was:", weekdays[weekday])
+    return day
+get_birthday(date_obj)
+
+# 9. When will you be (or when were you) 10,000 days old?
+day, month, year = date_obj.split("/")
+bdate = datetime.datetime(int(year), int(month), int(day))
+end_date = bdate + datetime.timedelta(days = 10000)
+print("10000 days after the date will be:", end_date)
